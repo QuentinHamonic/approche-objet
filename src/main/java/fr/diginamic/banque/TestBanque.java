@@ -1,13 +1,16 @@
 package fr.diginamic.banque;
 
 import fr.diginamic.banque.entites.Compte;
+import fr.diginamic.banque.entites.CompteTaux;
 
 public class TestBanque {
     public static void main(String[] args) {
-        Compte compte = new Compte("FR7612345", 1500.0);
-        System.out.println(compte);
+        Compte[] comptes = new Compte[2];
+        comptes[0] = new Compte("FR7612345", 1500.0);
+        comptes[1] = new CompteTaux("FR7698765", 3000.0, 2.5);
+
+        for (Compte compte : comptes) {
+            System.out.println(compte);
+        }
     }
 }
-// le sout print une forme d'adresse de l'intance avec un hash d'identification
-// a la fin mais meme en rechargeant la cmd, cet ID ne change pas donc je vois
-// pas trop ce que s'est
