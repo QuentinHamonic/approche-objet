@@ -17,6 +17,34 @@ public class Personne {
         this.prenom = prenom;
         this.adressePostale = adressePostale;
     }
+
+    public void afficher() {
+        System.out.println(nom.toUpperCase() + " " + prenom);
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAdressePostale(AdressePostale adressePostale) {
+        this.adressePostale = adressePostale;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public AdressePostale getAdressePostale() {
+        return adressePostale;
+    }
 }
 
 // la quantité de ligne a renseigner pour déclarer une personne est énorme
