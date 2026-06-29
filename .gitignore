@@ -1,1 +1,15 @@
+# Compilation Maven
 target/
+
+# Fichiers IDE Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Fichiers IDE IntelliJ
+.idea/
+*.iml
+
+# Divers
+*.class

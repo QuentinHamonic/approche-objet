@@ -1,48 +1,60 @@
 # approche-objet
 
 Projet Java (Maven) — formation Diginamic, module approche objet.
-
-## TP 01 — Créer et utiliser des classes
-
-Objectif : créer des classes représentant des concepts (adresse, personne), les
-instancier et comprendre la notion de **visibilité** des attributs entre packages.
+Regroupe les TP guidés (banque, géométrie, entités) et les exercices d'autonomie.
 
 ## Prérequis
 
 - JDK 21
 - Maven (build géré par le `pom.xml`)
 
-## Structure
-
-```
-src/main/java/
-├── entites/
-│   ├── AdressePostale.java     # 4 attributs : numeroRue, libelleRue, codePostal, ville
-│   ├── TestAdressePostale.java # main : crée 2 instances d'AdressePostale
-│   └── TestPersonne.java       # main : crée 2 instances de Personne
-└── entites2/
-    └── Personne.java           # 3 attributs : nom, prenom, adressePostale
-```
-
-`Personne` a été déplacée dans le package `entites2` : pour accéder aux attributs
-d'`AdressePostale` depuis un autre package, ceux-ci ont dû passer en `public`
-(notion de visibilité des attributs).
-
 ## Compilation et exécution
+
+Compiler une fois :
 
 ```bash
 mvn compile
 ```
 
-Exécuter une classe de test (exemple) :
+Puis exécuter la classe voulue, par exemple :
 
 ```bash
-java -cp target/classes entites.TestPersonne
+java -cp target/classes fr.diginamic.banque.TestBanque
+java -cp target/classes fr.diginamic.essais.TestOperations
+java -cp target/classes geometrie.TestObjetGeometrique
 ```
 
-## Prise de recul
+## TP guidés
 
-Instancier une personne complète demande beaucoup de lignes (une affectation par
-attribut, à répéter pour chaque objet) et n'oblige pas à renseigner tous les
-attributs. Les **constructeurs** et l'**encapsulation** (attributs `private` +
-getters/setters), vus ensuite, répondent à ces limites.
+| Thème            | Packages / classes principales                                  | Classe à exécuter                    |
+|------------------|-----------------------------------------------------------------|--------------------------------------|
+| Classes & instances | `entites.AdressePostale`, `entites2.Personne`                | `entites.TestAdressePostale` / `entites.TestPersonne` |
+| Méthodes static  | `utils.TestMethodeStatic`                                       | `utils.TestMethodeStatic`            |
+| Banque (héritage, abstraction) | `fr.diginamic.banque.entites.Compte`/`CompteTaux`, `Operation`/`Credit`/`Debit` | `fr.diginamic.banque.TestBanque` / `fr.diginamic.banque.TestOperation` |
+| Interfaces       | `geometrie.ObjetGeometrique` + `Cercle`/`Rectangle`             | `geometrie.TestObjetGeometrique`     |
+
+## Exercices d'autonomie
+
+| Exercice            | Classes principales (package `fr.diginamic`)                                   | Classe à exécuter             |
+|---------------------|--------------------------------------------------------------------------------|-------------------------------|
+| Operations          | `operations.Operations`                                                        | `essais.TestOperations`       |
+| CalculMoyenne       | `operations.CalculMoyenne`                                                      | `essais.TestMoyenne`          |
+| Theatre             | `entites.Theatre`                                                              | `essais.TestTheatre`          |
+| ManipulationChaine  | `entites.Salarie`                                                              | `chaines.ManipulationChaine`  |
+| Immobilier          | `maison.Piece` (abstraite) + `Chambre`/`Cuisine`/`Salon`/`SalleDeBain`/`WC` + `maison.Maison` | `essais.TestMaison` |
+| CalculSalaire       | `salaire.Intervenant` (abstraite) + `salaire.Salarie` + `salaire.Pigiste`      | `essais.TestIntervenant`      |
+| Combat              | `combat.Personnage`, `combat.Creature` (abstraite) + `Loup`/`Gobelin`/`Troll`, `combat.Potion` (abstraite) + `PotionSoin`/`PotionAttaqueMineure`/`PotionAttaqueMajeure`, `combat.Combat` | `combat.Jeu` |
+
+Le jeu Combat inclut les parties facultatives : inventaire de potions (consommables
+entre 2 combats via l'option 3 du menu) et récompenses aléatoires (50 % après un
+combat gagné, taux réglable via `tauxRecompense` dans `Combat`).
+
+## Notions du cours mises en œuvre
+
+- **Encapsulation** : attributs `private`, accès via getters/setters (Compte, Theatre, Salarie…).
+- **Méthode de classe (`static`)** : `Operations.calcul(...)`, `Integer.parseInt(...)`, `Double.parseDouble(...)`.
+- **Association** : `Personne` contient une `AdressePostale`, `Maison` contient un `Piece[]`, `Combat` manipule `Personnage`/`Creature`.
+- **Héritage** (`extends`, `super(...)`) : `CompteTaux`, pièces de la maison, intervenants, créatures.
+- **Abstraction** (`abstract class` / méthode abstraite) : `Operation`, `Piece`, `Intervenant`, `Creature`.
+- **Interfaces** : `ObjetGeometrique` implémentée par `Cercle` et `Rectangle`.
+- **Polymorphisme** : un tableau `Compte[]`, `Operation[]`, `Intervenant[]` ou `Piece[]` qui contient des objets de classes filles.
