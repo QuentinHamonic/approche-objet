@@ -58,3 +58,7 @@ combat gagné, taux réglable via `tauxRecompense` dans `Combat`).
 - **Abstraction** (`abstract class` / méthode abstraite) : `Operation`, `Piece`, `Intervenant`, `Creature`.
 - **Interfaces** : `ObjetGeometrique` implémentée par `Cercle` et `Rectangle`.
 - **Polymorphisme** : un tableau `Compte[]`, `Operation[]`, `Intervenant[]` ou `Piece[]` qui contient des objets de classes filles.
+
+## TP 12
+
+**Recensement.csv** à mettre à la racine
